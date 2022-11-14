@@ -1,0 +1,21 @@
+$families: "Black", "BlackItalic", "Bold", "BoldItalic", "Italic", "Light", "LightItalic", "Regular", "Thin", "ThinItalic";
+
+@each $family in $families {
+  @font-face {
+    font-family: "Montserrat#{$family}";
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+    src: local("Montserrat"), url("../fonts/montserrat/Montserrat-#{$family}.ttf") format("truetype");
+  }
+
+  @if $family == "Regular" {
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 400;
+      font-style: normal;
+      font-display: auto;
+      src: local("Montserrat"), url("../fonts/montserrat/Montserrat-#{$family}.ttf") format("truetype");
+    }
+  }
+}
