@@ -1,184 +1,97 @@
 <template>
-  <div class="view entry account">
-    <h3>
-      Account Details <span>Patient</span
-      ><font-awesome-icon icon="fa-solid fa-user-doctor" class="icon" />
-    </h3>
+  <div class="view entry accountinfo">
     <div class="basic_info">
       <p>
-        <span class="basic">Basic info</span
-        ><span class="sub">(Same as Patient)</span>
+        <span class="basic">Address info</span>
       </p>
       <div class="form">
         <div class="grouped">
           <div class="group small">
-            <label for="name">First Name</label>
+            <label for="name">Your Country</label>
             <span
               class="input-icon"
-              :class="{ 'has-error': name.errorMessage.value }"
+              :class="{ 'has-error': country.errorMessage.value }"
             >
               <input
                 id="name"
-                v-model="name.value.value"
+                v-model="country.value.value"
                 type="text"
                 name="name"
                 placeholder="First Name"
               />
               <!-- <span class="edge-text"> Last name </span> -->
             </span>
-            <div v-if="name.errorMessage.value" class="error">
-              {{ name.errorMessage.value }}
+            <div v-if="country.errorMessage.value" class="error">
+              {{ country.errorMessage.value }}
             </div>
           </div>
 
           <div class="group small">
-            <label for="name">Last Name</label>
+            <label for="name">Your City</label>
             <span
               class="input-icon"
-              :class="{ 'has-error': lastName.errorMessage.value }"
+              :class="{ 'has-error': city.errorMessage.value }"
             >
               <input
-                id="name"
-                v-model="lastName.value.value"
+                id="city"
+                v-model="city.value.value"
                 type="text"
                 name="name"
                 placeholder="Last Name"
               />
               <!-- <span class="edge-text"> Last name </span> -->
             </span>
-            <div v-if="lastName.errorMessage.value" class="error">
-              {{ lastName.errorMessage.value }}
+            <div v-if="city.errorMessage.value" class="error">
+              {{ city.errorMessage.value }}
             </div>
           </div>
         </div>
         <div class="grouped">
           <div class="group small">
-            <label for="name">Username</label>
+            <label for="name">Street and number</label>
             <span
               class="input-icon"
-              :class="{ 'has-error': username.errorMessage.value }"
+              :class="{ 'has-error': street.errorMessage.value }"
             >
               <input
                 id="username"
-                v-model="username.value.value"
+                v-model="street.value.value"
                 type="text"
                 name="name"
-                placeholder="First Name"
+                placeholder="Street and NumberP"
               />
               <!-- <span class="edge-text"> Last name </span> -->
             </span>
-            <div v-if="username.errorMessage.value" class="error">
-              {{ username.errorMessage.value }}
+            <div v-if="street.errorMessage.value" class="error">
+              {{ street.errorMessage.value }}
             </div>
           </div>
-
           <div class="group small">
-            <label for="name">Birthdate</label>
-            <div class="date">
-              <date-picker
-                v-model="dob.value.value"
-                color="#58C294"
-                mode="date"
-                class="group closing-date"
-                :input-debounce="200"
-                :masks="{
-                  input: 'DD/MM/YYYY',
-                }"
-              >
-                <template v-slot="{ inputValue, inputEvents, togglePopover }">
-                  <span class="input-icon">
-                    <input
-                      id="closingDate"
-                      :value="inputValue"
-                      type="text"
-                      name="closingDate"
-                      placeholder="DD/MM/YYYY"
-                      v-on="inputEvents"
-                    />
-                    <svg
-                      class="icon"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      @click="togglePopover"
-                    >
-                      <path
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-
-                    <!-- <icon
-                      class="icon"
-                      data="@/assets/svg-icon/calendar.svg"
-                      @click="togglePopover"
-                    /> -->
-                  </span>
-                  <span v-if="dob.errorMessage.value" class="error">
-                    {{ dob.errorMessage.value }}
-                  </span>
-                </template>
-              </date-picker>
+            <label for="name">ZipCode</label>
+            <span
+              class="input-icon"
+              :class="{ 'has-error': zipcode.errorMessage.value }"
+            >
+              <input
+                id="username"
+                v-model="zipcode.value.value"
+                type="text"
+                name="name"
+                placeholder="Street and NumberP"
+              />
+              <!-- <span class="edge-text"> Last name </span> -->
+            </span>
+            <div v-if="zipcode.errorMessage.value" class="error">
+              {{ zipcode.errorMessage.value }}
             </div>
           </div>
         </div>
-        <div class="grouped">
-          <div class="group small">
-            <label for="register_password">New Password</label>
-            <span
-              class="input-icon"
-              :class="{ 'has-error': password.errorMessage.value }"
-            >
-              <input
-                id="register_password"
-                v-model="password.value.value"
-                placeholder="new password"
-                :type="showPassword ? 'text' : 'password'"
-                name="password"
-              />
-              <Icon
-                class="icon toggle"
-                :data="getPasswordIcon(showPassword)"
-                @click="showPassword = !showPassword"
-              />
-            </span>
-            <div v-if="password.errorMessage.value" class="error">
-              {{ password.errorMessage.value }}
-            </div>
-          </div>
 
-          <div class="group small">
-            <label for="register_c_password">password confirmation</label>
-            <span
-              class="input-icon"
-              :class="{ 'has-error': password_confirmation.errorMessage.value }"
-            >
-              <input
-                id="register_c_password"
-                v-model="password_confirmation.value.value"
-                placeholder="Confirm password"
-                :type="showConfirmPassword ? 'text' : 'password'"
-                name="cpassword"
-              />
-              <Icon
-                class="icon toggle"
-                :data="getPasswordIcon(showConfirmPassword)"
-                @click="showConfirmPassword = !showConfirmPassword"
-              />
-            </span>
-            <div v-if="password_confirmation.errorMessage.value" class="error">
-              {{ password_confirmation.errorMessage.value }}
-            </div>
-          </div>
-        </div>
         <div class="btn">
           <button class="cancel">Cancel</button>
           <button class="save">Save Changes</button>
         </div>
       </div>
-      <AddressInfo />
     </div>
   </div>
 </template>
@@ -187,106 +100,63 @@ import { computed, ref, onMounted, watch, defineAsyncComponent } from "vue";
 import { useForm, useField } from "vee-validate";
 import { object, string, boolean, date } from "yup";
 import { DatePicker } from "v-calendar";
-import { getPasswordIcon } from "@/utils/helpers";
-import { get, isArray, isEmpty, omit, values } from "lodash-es";
-import AddressInfo from "@/components/Account/AddressInfo.vue";
-
+import { get, isArray, isEmpty, omit, values, zip } from "lodash-es";
+import isNumeric from "fast-isnumeric";
 const validationSchema = object({
-  name: string().required("Please input your first name"),
-  lastName: string().required("Please input you last name"),
-  email: string()
-    .email("Please input a valid email address")
-    .required("Please input a valid email address"),
-  username: string().required("Please input a valid username"),
-  dob: date().transform((value) => (!value ? undefined : value)),
-  password: string().required("Please input a valid password"),
-  password_confirmation: string()
-    .required("Please confirm your password")
+  city: string().max(255),
+  street: string().max(1000),
+  zipcode: string().max(255),
+  country: string()
     .test({
-      name: "confirm_password",
+      name: "check-country",
       exclusive: true,
       params: {},
-      message: "Password confirmation must match password",
+      message: "Please select a valid country",
       test: function (value) {
-        return value === this.parent.password;
+        return value ? isNumeric(value) : false;
       },
-    }),
+    })
+    .transform((value) => (!value ? undefined : value)),
 });
 
 const form = useForm({
   validationSchema,
   initialValues: {
-    name: "",
-    lastName: "",
-    email: "",
-    username: "",
-    dob: new Date(),
-    password: "",
-    password_confirmation: "",
+    city: "",
+    street: "",
+    zipcode: "",
+    country: "",
   },
 });
 
-const name = useField("name", undefined, {
+const city = useField("city", undefined, {
   validateOnValueUpdate: true,
 });
-const lastName = useField("lastName", undefined, {
-  validateOnValueUpdate: true,
-});
-
-const username = useField("username", undefined, {
+const street = useField("street", undefined, {
   validateOnValueUpdate: true,
 });
 
-const dob = useField("dob", undefined, {
-  validateOnValueUpdate: true,
-});
-const password = useField("password", undefined, {
-  validateOnValueUpdate: true,
-});
-const password_confirmation = useField("password_confirmation", undefined, {
+const zipcode = useField("zipcode", undefined, {
   validateOnValueUpdate: true,
 });
 
-const showPassword = ref(false);
-const showConfirmPassword = ref(false);
+const country = useField("country", undefined, {
+  validateOnValueUpdate: true,
+});
 </script>
 <style lang="scss" scoped>
 @use "@/assets/scss/colors.scss" as color;
 @use "sass:color" as sasscolor;
 @use "@/assets/scss/_breakpoints.scss" as breakpoint;
-// ::-webkit-scrollbar {
-//   width: 20px;
-// }
-
-// /* Track */
-// ::-webkit-scrollbar-track {
-//   box-shadow: inset 0 0 5px grey;
-//   border-radius: 10px;
-// }
-
-// /* Handle */
-// ::-webkit-scrollbar-thumb {
-//   background: rgba(255, 255, 255, 0.4);
-//   border-radius: 10px;
-// }
-
-// /* Handle on hover */
-// ::-webkit-scrollbar-thumb:hover {
-//   background: color.$ash-7;
-// }
-.view.entry.account {
+.view.entry.accountinfo {
   width: 100%;
-  padding-left: 100px;
-  // height: calc(100vh - 150px);
-  // overflow: hidden;
-  // overflow-y: auto;
+  margin-top: 30px;
   > .basic_info {
     > p {
       > .basic {
-        font-size: 20px;
+        font-size: 25px;
         font-weight: bold;
         color: color.$main-green;
-        margin-right: 6px;
       }
     }
     .form {

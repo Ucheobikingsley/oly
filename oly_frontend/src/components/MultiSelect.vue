@@ -128,7 +128,7 @@ export default defineComponent({
     );
 
     const multiselect = templateRef("multiselect");
-    const containerEl = computed<HTMLElement>(() => {
+    const containerEl = computed(() => {
       if (multiselect.value) {
         return get(multiselect, "value.$el");
       }
@@ -138,7 +138,7 @@ export default defineComponent({
 
     const optionsEl = computed(() => {
       if (containerEl.value) {
-        const optionsEl = containerEl.value.querySelector(
+        const optionsEl = (containerEl.value as HTMLElement).querySelector(
           ".multiselect-dropdown"
         );
         if (optionsEl) return optionsEl as HTMLElement;
@@ -177,7 +177,7 @@ export default defineComponent({
     const optionsElStyle = ref<Record<string, string>>({});
     const resizeObserver = new ResizeObserver(() => {
       if (containerEl.value) {
-        const rect = containerEl.value.getBoundingClientRect();
+        const rect = (containerEl.value as HTMLElement).getBoundingClientRect();
         const addedOptionsWidth = isNumeric(props.addToOptionsWidth)
           ? String(props.addToOptionsWidth)
           : "0";
@@ -281,7 +281,10 @@ export default defineComponent({
     onClickOutside(optionsEl, (e: Event) => {
       const target = get(e, "target") as Node;
 
-      if (containerEl.value && !containerEl.value.contains(target)) {
+      if (
+        containerEl.value &&
+        !(containerEl.value as HTMLElement).contains(target)
+      ) {
         isShowingOptions.value = false;
       }
     });
@@ -349,7 +352,7 @@ export default defineComponent({
       if (containerEl) {
         resizeObserver.observe(containerEl);
 
-        const search = containerEl.querySelector(
+        const search = (containerEl as HTMLElement).querySelector(
           props.mode === "tags"
             ? ".multiselect-tags-search"
             : ".multiselect-search"
@@ -364,7 +367,7 @@ export default defineComponent({
       } else if (prevEl) {
         resizeObserver.unobserve(prevEl);
 
-        const search = prevEl.querySelector(
+        const search = (prevEl as HTMLElement).querySelector(
           props.mode === "tags"
             ? ".multiselect-tags-search"
             : ".multiselect-search"

@@ -35,11 +35,12 @@ const goToTherapists = () => {
 const goToTherapies = () => {
   router.push({ name: "therapies" });
 };
-const logout = () => {
-  user.logout();
+const logout = async () => {
+  await user.logout();
   toast.error("User Logged out", {
     timeout: 3000,
   });
+  console.log("here");
   router.push({ name: "login" });
   return;
 };

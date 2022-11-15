@@ -25,6 +25,7 @@ import {
 import { api } from "@/utils/requests";
 import { isProduction, cookie, isDevelopment } from "@/utils/helpers";
 import { toHandlers } from "vue";
+import { JwtPayload } from "jwt-decode";
 
 @Module({ namespaced: true, name: "User" })
 export default class User extends VuexModule {
@@ -37,7 +38,7 @@ export default class User extends VuexModule {
   tokenCreationReason: TokenCreationReasons | null = null;
   userData: Record<string, unknown> | null = null;
 
-  get parseToken(): Record<string, unknown> | null {
+  get parseToken(): JwtPayload | Record<string, unknown> | null {
     const parsedToken = useJwt(this.token, {
       fallbackValue: null,
     });
@@ -71,7 +72,10 @@ export default class User extends VuexModule {
   get profileData(): UserProfileType | null {
     const parsedToken = this.parseToken;
     if (parsedToken) {
-      const profile = parsedToken.profile as Record<string, unknown>;
+      const profile = get(parsedToken, "profile") as unknown as Record<
+        string,
+        unknown
+      >;
 
       if (isUserProfile(profile)) return profile;
       else if (isTherapistProfile(profile)) return profile;
@@ -134,16 +138,17 @@ export default class User extends VuexModule {
   @Action
   async setToken(token: string): Promise<void> {
     //Clear continue when switching profile
-    if (!!this.token && !!token && token !== this.token && this.hasProfile) {
-      await this.context.commit("setState", {
-        continue: null,
-      });
-    }
-
+    // if (!!this.token && !!token && token !== this.token) {
+    //   await this.context.commit("setState", {
+    //     continue: null,
+    //   });
+    // }
+    console.log("log", token);
     if (!token) {
       await this.context.dispatch("logout");
       return;
     }
+    console.log("logo", import.meta.env.NODE_ENV);
 
     this.context.commit("setState", {
       mode: "logged",
@@ -188,10 +193,10 @@ export default class User extends VuexModule {
     }
   }
 
-  static checkTokenExpiry(parseToken: Record<string, unknown>): boolean {
+  static checkTokenExpiry(parseToken: JwtPayload): boolean {
     if (parseToken) {
       const expireDate =
-        (parseInt((parseToken.exp as string) || "0", 10) || 0) * 1000;
+        (parseInt(String(parseToken.exp) || "0", 10) || 0) * 1000;
 
       return Date.now() >= expireDate;
     }

@@ -339,7 +339,7 @@ const onSubmit = async (e: Event) => {
 
     (async () => {
       if (e instanceof HTTPError) {
-        const status = parseInt(get(e, "response.status"), 10);
+        const status = get(e, "response.status");
         console.log("status", status);
         if (status >= 400) {
           const errResp = await e.response.json();
@@ -457,7 +457,7 @@ const updateDate = async () => {
 
     (async () => {
       if (e instanceof HTTPError) {
-        const status = parseInt(get(e, "response.status"), 10);
+        const status = get(e, "response.status");
         console.log("status", status);
         if (status >= 400) {
           const errResp = await e.response.json();
@@ -539,9 +539,9 @@ watch(
           });
         }
       } catch (e: unknown) {
-        const status = parseInt(get(e, "response.status"), 10);
+        const status = get(e, "response.status");
         console.log("status", status);
-        if (status >= 400) {
+        if (Number(status) >= 400) {
           await user.logout();
           return toast.error("Couldn't verify email Address", {
             id: toastId.value,

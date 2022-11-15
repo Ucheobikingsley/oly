@@ -11,13 +11,11 @@ type Cookie = CookiesStatic & {
 };
 
 export const isDevelopment =
-  String(process.env.NODE_ENV).toLowerCase() === "development";
+  String(import.meta.env.MODE).toLowerCase() === "development";
 export const isProduction =
-  String(process.env.NODE_ENV).toLowerCase() === "production";
-
+  String(import.meta.env.MODE).toLowerCase() === "production";
+console.log("log", isDevelopment);
 export const cookie = (Cookies as Cookie).withAttributes({
   path: "/",
-  domain: isDevelopment
-    ? undefined
-    : `${process.env.VUE_APP_UI_DOMAIN}.${process.env.VUE_APP_UI_TOPLEVELDOMAIN}`,
+  domain: isDevelopment ? undefined : `${import.meta.env.VITE_APP_UI_DOMAIN}`,
 });

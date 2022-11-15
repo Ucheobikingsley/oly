@@ -200,7 +200,7 @@ const onSubmit = async (e: Event) => {
 
     (async () => {
       if (e instanceof HTTPError) {
-        const status = parseInt(get(e, "response.status"), 10);
+        const status = get(e, "response.status");
         console.log("status", status);
         if (status >= 400) {
           const errResp = await e.response.json();
