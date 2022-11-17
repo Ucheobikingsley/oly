@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import logo from "@/components/icons/whiteLogo.vue";
 import vueSvg from "../assets/svg-icon/ei_logo.svg";

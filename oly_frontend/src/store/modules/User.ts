@@ -1,21 +1,7 @@
 import router from "@/router";
 import { VuexModule, Module, Action, Mutation } from "vuex-module-decorators";
 import { hasLoggedInResponse, TokenCreationReasons } from "@/types/logged";
-import {
-  get,
-  set,
-  has,
-  each,
-  isString,
-  isNull,
-  isArray,
-  isObject,
-  values,
-  keys,
-  includes,
-  isEmpty,
-  omit,
-} from "lodash-es";
+import { get, set, has, each, isNull } from "lodash-es";
 import { useJwt } from "@vueuse/integrations/useJwt";
 import {
   isUserProfile,
@@ -23,8 +9,7 @@ import {
   UserProfileType,
 } from "@/types/logged";
 import { api } from "@/utils/requests";
-import { isProduction, cookie, isDevelopment } from "@/utils/helpers";
-import { toHandlers } from "vue";
+import { cookie } from "@/utils/helpers";
 import { JwtPayload } from "jwt-decode";
 
 @Module({ namespaced: true, name: "User" })
@@ -104,6 +89,7 @@ export default class User extends VuexModule {
 
   @Action
   async getAuthUser(): Promise<void> {
+    console.log("home", import.meta.env.VITE_APP_UI_DOMAIN);
     const response = await api.get("me");
     if (response.status === 200) {
       const data = (await response.json()) as Record<string, unknown>;

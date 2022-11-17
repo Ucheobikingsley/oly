@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="view entry account">
     <h3>
@@ -183,12 +184,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, ref, onMounted, watch, defineAsyncComponent } from "vue";
+import { ref } from "vue";
 import { useForm, useField } from "vee-validate";
-import { object, string, boolean, date } from "yup";
+import { object, string, date } from "yup";
 import { DatePicker } from "v-calendar";
 import { getPasswordIcon } from "@/utils/helpers";
-import { get, isArray, isEmpty, omit, values } from "lodash-es";
 import AddressInfo from "@/components/Account/AddressInfo.vue";
 
 const validationSchema = object({

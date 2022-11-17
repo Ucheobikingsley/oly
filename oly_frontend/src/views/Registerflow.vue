@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="view entry registerflow">
     <div class="head_header">
@@ -145,15 +146,10 @@
 <script lang="ts" setup>
 import { ref, computed, watch, nextTick } from "vue";
 import { useForm, useField } from "vee-validate";
-import { object, string, boolean, date } from "yup";
+import { object, string, date } from "yup";
 import { DatePicker } from "v-calendar";
 import { useToast } from "vue-toastification";
-import {
-  LocationQuery,
-  LocationQueryValue,
-  useRoute,
-  useRouter,
-} from "vue-router";
+import { LocationQueryValue, useRoute, useRouter } from "vue-router";
 import { getModule } from "vuex-module-decorators";
 import User from "@/store/modules/User";
 import { store } from "@/store";
@@ -167,16 +163,14 @@ import { format as dateFnsFormat, isValid as isDateValid } from "date-fns";
 import isNumeric from "fast-isnumeric";
 import {
   isErrorResponse,
-  hasSentTokenResponse,
   isValidationErrorResponse,
-  TokenCreationReasons,
   hasLoggedInResponse,
   isAuthorizationError,
 } from "@/types/logged";
 import { isDevelopment, isProduction } from "@/utils/helpers";
 import * as qs from "qs";
-import { stat } from "fs";
-import dxOverlay from "devextreme/ui/overlay";
+// import { stat } from "fs";
+// import dxOverlay from "devextreme/ui/overlay";
 const toast = useToast();
 const toastId = ref("login");
 const route = useRoute();
@@ -424,9 +418,9 @@ const updateDate = async () => {
     timeout: 0,
   });
   try {
-    const token = isProduction
-      ? await recaptcha?.executeRecaptcha("profile")
-      : "token";
+    // const token = isProduction
+    //   ? await recaptcha?.executeRecaptcha("profile")
+    //   : "token";
 
     const response = await api.patch("profile", {
       json: {

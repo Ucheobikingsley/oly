@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <EmailVerification v-if="hasSentVerificationMessage" />
   <div v-else class="view entry register">
@@ -169,11 +170,11 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, onMounted, watch, defineAsyncComponent } from "vue";
+import { computed, ref, onMounted, defineAsyncComponent } from "vue";
 import { useForm, useField } from "vee-validate";
 import { object, string, boolean } from "yup";
 import { createChangeHandler } from "@/utils/validator";
-import { get, isArray, isEmpty, omit, values } from "lodash-es";
+import { get } from "lodash-es";
 import { useToast } from "vue-toastification";
 import { api } from "@/utils/requests";
 import {
@@ -262,11 +263,11 @@ const privacyPolicy = useField<boolean>("privacyPolicy", undefined, {
   validateOnMount: true,
 });
 
-const privacyPolicyIcon = computed(() =>
-  privacyPolicy.value.value
-    ? "@/assets/icons/checkbox-checked.svg?icon"
-    : "@/assets/icons/checkbox.svg?icon"
-);
+// const privacyPolicyIcon = computed(() =>
+//   privacyPolicy.value.value
+//     ? "@/assets/icons/checkbox-checked.svg?icon"
+//     : "@/assets/icons/checkbox.svg?icon"
+// );
 
 // const termsOfUse = useField<boolean>("termsOfUse", undefined, {
 //   validateOnValueUpdate: true,

@@ -96,11 +96,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, ref, onMounted, watch, defineAsyncComponent } from "vue";
 import { useForm, useField } from "vee-validate";
-import { object, string, boolean, date } from "yup";
-import { DatePicker } from "v-calendar";
-import { get, isArray, isEmpty, omit, values, zip } from "lodash-es";
+import { object, string } from "yup";
+// import { DatePicker } from "v-calendar";
+// import { get, isArray, isEmpty, omit, values, zip } from "lodash-es";
 import isNumeric from "fast-isnumeric";
 const validationSchema = object({
   city: string().max(255),

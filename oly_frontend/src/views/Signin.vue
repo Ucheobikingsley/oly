@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="view entry signin">
     <p class="welcome">Welcome Back</p>
@@ -69,18 +70,16 @@ import { object, string, boolean } from "yup";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { useReCaptcha } from "vue-recaptcha-v3";
-import { get, isArray, isEmpty, values } from "lodash-es";
+import { get } from "lodash-es";
 import { HTTPError, TimeoutError } from "ky-universal";
-import { computed, defineComponent, nextTick, onMounted, ref } from "vue";
+import { ref } from "vue";
 import { getModule } from "vuex-module-decorators";
 import User from "@/store/modules/User";
 import { store } from "@/store";
 import { isDevelopment, isProduction } from "@/utils/helpers";
 import {
   isErrorResponse,
-  hasSentTokenResponse,
   isValidationErrorResponse,
-  TokenCreationReasons,
   hasLoggedInResponse,
   isAuthorizationError,
 } from "@/types/logged";

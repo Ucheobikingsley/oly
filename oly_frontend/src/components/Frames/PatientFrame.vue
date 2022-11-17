@@ -2,7 +2,7 @@
 import { ref, computed } from "vue";
 import footerComp from "@/components/footer.vue";
 import logo from "@/components/icons/logo.vue";
-import { DxPopover } from "devextreme-vue/popover";
+// import { DxPopover } from "devextreme-vue/popover";
 import { useRouter, useRoute } from "vue-router";
 import { getModule } from "vuex-module-decorators";
 import User from "@/store/modules/User";
