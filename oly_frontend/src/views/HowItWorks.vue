@@ -70,7 +70,7 @@
         </p>
       </div>
       <div class="img">
-        <img src="@/assets/images/pngs/dna.png" alt="" />
+        <img src="@/assets/images/pngs/dna.webp" alt="" />
       </div>
       <div class="element_list">
         <div class="list">
@@ -314,7 +314,7 @@
     width: 100%;
     height: 450px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url("@/assets/images/pngs/presentazione_logo_OLY_v1.png");
+      url("@/assets/images/pngs/presentazione_logo_OLY_v1.webp");
     background-size: cover;
     color: color.$white-1;
     text-align: center;

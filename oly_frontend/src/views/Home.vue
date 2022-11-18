@@ -71,7 +71,7 @@ const activeClass = ref<"air" | "water" | "earth" | "fire">("air");
   <div ref="container" class="view entry home">
     <div class="hero_section">
       <div class="image_container">
-        <img src="@/assets/images/pngs/sfondo.png" alt="" />
+        <img src="@/assets/images/pngs/sfondo.webp" alt="" />
       </div>
       <div class="wrapper">
         <div class="img_container"></div>
@@ -310,7 +310,7 @@ const activeClass = ref<"air" | "water" | "earth" | "fire">("air");
     </div>
 
     <div class="hui_image_">
-      <img src="@/assets/images/jpeg/hui_1.png" alt="" />
+      <img src="@/assets/images/pngs/hui_1.webp" alt="" />
     </div>
   </div>
 </template>

@@ -127,7 +127,7 @@ const goTopricingPage = () => {
       <slot></slot>
     </div>
     <div class="section_two">
-      <img src="@/assets/images/pngs/image.png" alt="" />
+      <img src="@/assets/images/pngs/image.webp" alt="" />
     </div>
   </div>
 </template>

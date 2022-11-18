@@ -7,7 +7,7 @@ const rating = ref();
   <div class="component entry therapistcard">
     <div class="card">
       <div class="card-img">
-        <img src="@/assets/images/pngs/post_1.png" alt="" />
+        <img src="@/assets/images/pngs/post_1.webp" alt="" />
       </div>
       <div class="info">
         <div class="row">

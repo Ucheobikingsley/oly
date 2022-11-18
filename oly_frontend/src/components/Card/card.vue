@@ -2,7 +2,7 @@
   <div class="component entry card">
     <div class="card">
       <div class="card-img">
-        <img src="@/assets/images/pngs/post_1.png" alt="" />
+        <img src="@/assets/images/pngs/post_1.webp" alt="" />
       </div>
       <div class="info">
         <div class="row">
@@ -16,7 +16,7 @@
         </div>
         <div class="brand">
           <div class="brand-logo">
-            <img src="@/assets/images/pngs/post_1.png" alt="" />
+            <img src="@/assets/images/pngs/post_1.webp" alt="" />
           </div>
           <p>Brand name</p>
         </div>

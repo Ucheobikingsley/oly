@@ -20,7 +20,7 @@
     },
     "preserveValueImports": false, 
     "importsNotUsedAsValues": "preserve",
-    "target": "ES6",
+    "target": "ES5",
     "module": "esnext",
     "strict": true,
     "removeComments": false,
