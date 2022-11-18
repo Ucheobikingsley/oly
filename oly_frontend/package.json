@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite serve",
     "build": "run-p type-check build-only",
-    "watch": "node --max_old_space_size=800 ./node_modules/vite/bin/vite.js build --watch --mode development",
+    "watch": "node --max_old_space_size=1000./node_modules/vite/bin/vite.js build --watch --mode development",
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
